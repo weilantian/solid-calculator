@@ -2,11 +2,13 @@ import fonts from "../../common/fonts";
 import {Text, useGLTF} from "@react-three/drei";
 import {useEffect, useRef, useState} from "react";
 import {TimelineMax,gsap} from 'gsap'
-import { useBox} from '@react-three/cannon'
+
 import {useStore} from "../../state/common";
-import {useSpring} from "react-spring";
+
 export const Button = ({onC,highlighted,text,position,textOffset,large})=> {
+    const [active,setActive] = useState(false)
     const {equalBtnClicked} = useStore(state=>state.event)
+    const {playButtonSound} = useStore(state=>state.sound)
     const { nodes } = useGLTF('/scene.glb')
     const button = useRef()
     useEffect(()=> {
@@ -20,7 +22,10 @@ export const Button = ({onC,highlighted,text,position,textOffset,large})=> {
             })
         }
     },[equalBtnClicked])
+    useEffect(() => void (document.body.style.cursor = active ? 'pointer' : 'auto'), [active])
     const onClickHandler = ()=> {
+        if (equalBtnClicked) return;
+        playButtonSound()
         if (onC) onC()
         const t1 = new TimelineMax()
         t1.to(button.current.position,{
@@ -55,7 +60,7 @@ export const Button = ({onC,highlighted,text,position,textOffset,large})=> {
         >
             <color attach="color" args={["black"]} />
         </Text>
-        <mesh onClick={onClickHandler}
+        <mesh onPointerOver={() => setActive(true)} onPointerOut={() => setActive(false)} onClick={onClickHandler}
             castShadow
             receiveShadow
             geometry={!large?  nodes.SmallBtn005.geometry: nodes.LagreBtn.geometry}
