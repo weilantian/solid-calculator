@@ -1,11 +1,9 @@
 import {Text, useGLTF} from "@react-three/drei";
 import fonts from "../../common/fonts";
-import {useEffect, useRef, useState} from "react";
-import {extend} from "@react-three/fiber";
-import { Leva, useControls, button } from 'leva'
+import {useEffect, useRef} from "react";
 import {useStore} from "../../state/common";
 import {gsap} from 'gsap'
-export const Display = ({geometry,material,text})=> {
+export const Display = ({text})=> {
     // configure font geometry
     const {equalBtnClicked} = useStore(state=>state.event)
     const { nodes, materials } = useGLTF('/scene.glb')

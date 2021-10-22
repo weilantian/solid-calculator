@@ -21,7 +21,7 @@ export const Button = ({onC,highlighted,text,position,textOffset,large})=> {
                 duration:2
             })
         }
-    },[equalBtnClicked])
+    },[equalBtnClicked, position])
     useEffect(() => void (document.body.style.cursor = active ? 'pointer' : 'auto'), [active])
     const onClickHandler = ()=> {
         if (equalBtnClicked) return;

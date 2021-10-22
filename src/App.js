@@ -1,8 +1,7 @@
 import {Canvas, useFrame, useThree, extend} from '@react-three/fiber'
 import './App.css';
-import {OrbitControls, PerspectiveCamera, useGLTF} from "@react-three/drei";
+import {useGLTF} from "@react-three/drei";
 import {useRef, Suspense, useEffect} from "react";
-import {caseMaterial} from "./materials";
 import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer'
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass'
@@ -13,7 +12,6 @@ import {useMachine} from "@xstate/react";
 import {gsap} from "gsap";
 import * as THREE from 'three'
 import {useStore} from "./state/common";
-import {useSpring} from "react-spring";
 import MenuBar from './components/Interface/MenuBar'
 
 extend({EffectComposer, RenderPass, GlitchPass})

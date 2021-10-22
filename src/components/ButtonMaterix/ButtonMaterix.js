@@ -1,8 +1,7 @@
 import Button from "../Button";
-import {usePlane} from "@react-three/cannon";
 import {useStore} from "../../state/common";
 
-export const ButtonMaterix = ({send,state})=> {
+export const ButtonMaterix = ({send})=> {
     const {setEqualBtnClicked} = useStore(state=>state.event)
     return <group position={[3.38, 7.8, -1.08]}>
         <group>
@@ -15,7 +14,7 @@ export const ButtonMaterix = ({send,state})=> {
         <group position={[0,-1.2,0]}>
             <Button onC={()=>send({type:"NUMBER_INPUT",number:7})} text={"7"} textOffset={[0,0,0]} position={[0,0,0]}/>
             <Button onC={()=>send({type:"NUMBER_INPUT",number:8})} text={"8"} textOffset={[-0.00,0,0]} position={[-1.1,0,0]}/>
-            <Button onC={()=>send({type:"NUMBER_INPUT",number:9})}text={"9"} textOffset={[-0,0,0]} position={[-1.1*2,0,0]}/>
+            <Button onC={()=>send({type:"NUMBER_INPUT",number:9})} text={"9"} textOffset={[-0,0,0]} position={[-1.1*2,0,0]}/>
             <Button onC={()=>send({type:"SYMBOL_INPUT",symbol:"multiply"})} highlighted={true} text={"X"} textOffset={[-0.04,0,0]} position={[-1.1*3,0,0]}/>
         </group>
         <group position={[0,-1.2*2,0]}>

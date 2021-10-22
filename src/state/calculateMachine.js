@@ -1,5 +1,4 @@
 import {createMachine} from "xstate";
-import {context} from "@react-three/fiber";
 
 const calculateMachine = createMachine({
     id:'calculate',
@@ -36,7 +35,7 @@ const calculateMachine = createMachine({
                 },
                 INPUT_DECIMAL: {
                     target:'idle',
-                    actions: (context,event)=> {
+                    actions: (context)=> {
                         if (!context.decimalAdded) {
                             context.decimalAdded = true
                             context.inputing += "."
@@ -46,7 +45,7 @@ const calculateMachine = createMachine({
                 },
                 AC_INPUT: {
                     target:'idle',
-                    actions:(context,event)=> {
+                    actions:(context)=> {
                         context.inputing=""
                         context.stored = ""
                         context.calculation = "unset"
@@ -68,7 +67,7 @@ const calculateMachine = createMachine({
                 },
                 AC_INPUT: {
                     target:'idle',
-                    actions:(context,event)=> {
+                    actions:(context)=> {
                         context.inputing=""
                         context.stored = ""
                         context.calculation = "unset"
@@ -78,7 +77,7 @@ const calculateMachine = createMachine({
                 },
                 EQUAL_INPUT: {
                     target:'willInputOtherNumber',
-                    actions: (context,event)=> {
+                    actions: (context)=> {
                         const num1 = Number(context.stored)
                         const num2 = Number(context.inputing)
                         if (context.calculation === "plus") {
@@ -96,7 +95,7 @@ const calculateMachine = createMachine({
                 },
                 INPUT_DECIMAL: {
                     target:'willInputOtherNumber',
-                    actions: (context,event)=> {
+                    actions: (context)=> {
                         if (!context.decimalAdded) {
                             context.decimalAdded = true
                             context.inputing += "."
